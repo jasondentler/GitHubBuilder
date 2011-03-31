@@ -1,9 +1,0 @@
-C:\Projects\GitHubBuilder\GitHubBuilder.Console\bin\Debug\GitHubBuilder.Console.exe
-C:\Projects\GitHubBuilder\GitHubBuilder.Console\bin\Debug\GitHubBuilder.Console.pdb
-C:\Projects\GitHubBuilder\GitHubBuilder.Console\bin\Debug\ICSharpCode.SharpZipLib.dll
-C:\Projects\GitHubBuilder\GitHubBuilder.Console\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Projects\GitHubBuilder\GitHubBuilder.Console\obj\x86\Debug\GitHubBuilder.Console.exe
-C:\Projects\GitHubBuilder\GitHubBuilder.Console\obj\x86\Debug\GitHubBuilder.Console.pdb
-C:\Projects\GitHubBuilder\GitHubBuilder.Console\bin\Debug\Newtonsoft.Json.dll
-C:\Projects\GitHubBuilder\GitHubBuilder.Console\bin\Debug\Newtonsoft.Json.pdb
-C:\Projects\GitHubBuilder\GitHubBuilder.Console\bin\Debug\Newtonsoft.Json.xml
