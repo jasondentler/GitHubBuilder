@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using ICSharpCode.SharpZipLib.Zip;
 
 namespace GitHubBuilder.Console
@@ -12,9 +9,9 @@ namespace GitHubBuilder.Console
     public class Source
     {
 
-
         private readonly string _userName;
         private readonly string _repoName;
+
 
         public Source(string userName, string repoName)
         {
@@ -36,16 +33,18 @@ namespace GitHubBuilder.Console
             wc.DownloadFile(url, path);
         }
 
-        private void DownloadAndExtract(string path, string branchOrSha)
+        private string DownloadAndExtract(string path, string branchOrSha)
         {
             var zipPath = Path.GetTempFileName();
             DownloadZip(zipPath, branchOrSha);
             var fz = new FastZip();
             fz.ExtractZip(zipPath, path, null);
             File.Delete(zipPath);
+            var sourceDirectory = Directory.GetDirectories(path).Single();
+            return sourceDirectory;
         }
 
-        private void RepavePath(string path)
+        private static void RepavePath(string path)
         {
             if (Directory.Exists(path))
                 Directory.Delete(path, true);
@@ -53,15 +52,15 @@ namespace GitHubBuilder.Console
             Directory.CreateDirectory(path);
         }
 
-        public void Download(string path)
+        public string Download(string path)
         {
-            Download(path, "master");
+            return Download(path, "master");
         }
 
-        public void Download(string path, string branchOrSha)
+        public string Download(string path, string branchOrSha)
         {
             RepavePath(path);
-            DownloadAndExtract(path, branchOrSha);
+            return DownloadAndExtract(path, branchOrSha);
         }
 
     }
