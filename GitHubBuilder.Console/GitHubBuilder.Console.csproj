@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildProcess.cs" />
+    <Compile Include="Gist.cs" />
     <Compile Include="JsonHelpers.cs" />
     <Compile Include="NcqrsBuildProcess.cs" />
     <Compile Include="Program.cs" />

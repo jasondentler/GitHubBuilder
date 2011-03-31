@@ -19,7 +19,6 @@ namespace GitHubBuilder.Console
                        {
                            WorkingDirectory = SourcePath,
                            RedirectStandardOutput = true,
-                           RedirectStandardError = true,
                            UseShellExecute = false
                        };
         }
