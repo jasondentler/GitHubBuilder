@@ -38,12 +38,14 @@ namespace GitHubBuilder.Console
                 postValues["private"] = "on";
             postValues["file_name[gistfile1]"] = fileName;
 
-            var wc = new WebClient();
-            var data = wc.UploadValues(url, postValues);
-            var jsonData = Encoding.UTF8.GetString(data);
-            var o = JObject.Parse(jsonData);
-            var gist = (JObject) o["gists"][0];
-            return new Gist((string) gist["repo"]);
+            using (var wc = new WebClient())
+            {
+                var data = wc.UploadValues(url, postValues);
+                var jsonData = Encoding.UTF8.GetString(data);
+                var o = JObject.Parse(jsonData);
+                var gist = (JObject) o["gists"][0];
+                return new Gist((string) gist["repo"]);
+            }
         }
 
 

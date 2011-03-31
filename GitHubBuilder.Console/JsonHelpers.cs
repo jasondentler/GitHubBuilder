@@ -18,9 +18,11 @@ namespace GitHubBuilder.Console
 
         public static JObject GetJson(string url)
         {
-            var wc = new WebClient();
-            var data = wc.DownloadString(url);
-            return JObject.Parse(data);
+            using (var wc = new WebClient())
+            {
+                var data = wc.DownloadString(url);
+                return JObject.Parse(data);
+            }
         }
 
     }

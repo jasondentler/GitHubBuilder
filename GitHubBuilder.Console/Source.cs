@@ -29,8 +29,8 @@ namespace GitHubBuilder.Console
                                     _repoName,
                                     branchOrSha);
 
-            var wc = new WebClient();
-            wc.DownloadFile(url, path);
+            using (var wc = new WebClient())
+                wc.DownloadFile(url, path);
         }
 
         private string DownloadAndExtract(string path, string branchOrSha)

@@ -34,21 +34,52 @@ namespace GitHubBuilder.Console
             var prePatchBuild = new NcqrsBuildProcess(sourceDir);
             prePatchBuild.Build();
             
-            if (prePatchBuild.Success)
-            {
-                comment.AppendLine("The build worked before your pull request was applied.");
-            } else
+            if (!prePatchBuild.Success)
             {
                 var gist = Gist.CreateGist(
                     _userName, _password,
-                    string.Format("buildLog.pre-pullRequest{0}.txt", pull.PullRequestNumber),
+                    string.Format("buildLog.before-pullRequest{0}.txt", pull.PullRequestNumber),
                     prePatchBuild.Output, false);
                 comment.AppendLine("The build was broken before your pull request was applied. It's not your fault.");
                 comment.AppendFormat("[Here's the build log.]({0})", gist.GistUrl);
                 comment.AppendLine();
                 comment.AppendLine();
             }
-            
+
+            System.Console.WriteLine("Apply patch to source.");
+            var applyLog = Patch.DownloadAndApply(pull, sourceDir, GitPath);
+
+            System.Console.WriteLine("Building patched source.");
+            var postPatchBuild = new NcqrsBuildProcess(sourceDir);
+            postPatchBuild.Build();
+
+            if (postPatchBuild.Success)
+            {
+                System.Console.WriteLine("Build success!");
+                comment.AppendLine(
+                    prePatchBuild.Success
+                        ? "Thanks! Your pull request didn't break the build (assuming no other commits have been merged)."
+                        : "Congratulations! You fixed the broken build. Thank you!");
+            } else
+            {
+                System.Console.WriteLine("The build is broken.");
+                var gist = Gist.CreateGist(
+                    _userName, _password,
+                    string.Format("buildLog.after-pullRequest{0}.txt", pull.PullRequestNumber),
+                    postPatchBuild.Output, false);
+
+                comment.AppendLine(
+                    prePatchBuild.Success
+                        ? "Uh oh. This pull request breaks the build."
+                        : "After applying your pull request, the build is still broken.");
+                comment.AppendFormat("[Here's the build log.]({0})", gist.GistUrl);
+            }
+
+            comment.AppendLine();
+            comment.AppendLine("This is an automated message.");
+
+            pull.Comment(_userName, _password, comment.ToString());
+
             System.Console.WriteLine(comment.ToString());
             System.Console.WriteLine("Press any key");
             System.Console.ReadKey();
@@ -71,7 +102,6 @@ namespace GitHubBuilder.Console
             p.WaitForExit();
             return p.StandardOutput.ReadToEnd().Trim();
         }
-
 
     }
 }

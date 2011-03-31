@@ -29,7 +29,6 @@ namespace GitHubBuilder.Console
                 p.WaitForExit((int) TimeSpan.FromSeconds(1).TotalMilliseconds);
                 var newOutput = outputStream.ReadToEnd();
                 output.Append(newOutput);
-                Debug.Write(newOutput);
             }
             Output = output.ToString();
             Success = p.ExitCode == 0;
