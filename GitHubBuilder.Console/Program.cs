@@ -19,7 +19,7 @@ namespace GitHubBuilder.Console
             var path = @"c:\myNcqrsBuilder";
             var comment = new StringBuilder();
 
-            var pull = new PullRequest(repoUserName, repoName, 25);
+            var pull = new PullRequest(repoUserName, repoName, 59);
             var data = JsonConvert.SerializeObject(pull);
             System.Console.WriteLine(data);
             Debug.WriteLine(data);
@@ -36,12 +36,12 @@ namespace GitHubBuilder.Console
             
             if (!prePatchBuild.Success)
             {
-                var gist = Gist.CreateGist(
+                var prePatchGist = Gist.CreateGist(
                     _userName, _password,
                     string.Format("buildLog.before-pullRequest{0}.txt", pull.PullRequestNumber),
                     prePatchBuild.Output, false);
                 comment.AppendLine("The build was broken before your pull request was applied. It's not your fault.");
-                comment.AppendFormat("[Here's the build log.]({0})", gist.GistUrl);
+                comment.AppendFormat("[Here's the build log.]({0})", prePatchGist.GistUrl);
                 comment.AppendLine();
                 comment.AppendLine();
             }
@@ -63,7 +63,7 @@ namespace GitHubBuilder.Console
             } else
             {
                 System.Console.WriteLine("The build is broken.");
-                var gist = Gist.CreateGist(
+                var postPatchGist = Gist.CreateGist(
                     _userName, _password,
                     string.Format("buildLog.after-pullRequest{0}.txt", pull.PullRequestNumber),
                     postPatchBuild.Output, false);
@@ -72,11 +72,12 @@ namespace GitHubBuilder.Console
                     prePatchBuild.Success
                         ? "Uh oh. This pull request breaks the build."
                         : "After applying your pull request, the build is still broken.");
-                comment.AppendFormat("[Here's the build log.]({0})", gist.GistUrl);
+                comment.AppendFormat("[Here's the build log.]({0})", postPatchGist.GistUrl);
             }
 
             comment.AppendLine();
-            comment.AppendLine("This is an automated message.");
+            comment.AppendLine();
+            comment.AppendLine("This is an automated message from [GitHub Builder](http://github.com/jasondentler/GitHubBuilder).");
 
             pull.Comment(_userName, _password, comment.ToString());
 

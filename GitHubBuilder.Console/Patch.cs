@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 
 namespace GitHubBuilder.Console
 {
@@ -31,9 +27,10 @@ namespace GitHubBuilder.Console
 
         private static string Apply(string gitPath, string sourcePath, string diffPath)
         {
-            var args = string.Format("apply --directory=\"{0}\" --verbose \"{1}\"", sourcePath, diffPath);
+            var args = string.Format("apply --whitespace=nowarn \"{0}\"", diffPath);
             var si = new ProcessStartInfo(gitPath, args)
                          {
+                             WorkingDirectory = sourcePath,
                              UseShellExecute = false,
                              RedirectStandardOutput = true,
                              RedirectStandardError = true
