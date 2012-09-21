@@ -1,9 +1,12 @@
+# NuGets - Use NuGet package restore
+src/packages/*/*
+
 # Standard VS.NET
 obj
 bin
 *.csproj.user
 *.suo
-packages
+
 
 # Resharper
 *ReSharper*

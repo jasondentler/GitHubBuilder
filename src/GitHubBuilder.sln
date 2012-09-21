@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubBuilder", "GitHubBuilder\GitHubBuilder.csproj", "{D7FAACD9-EA5B-424D-839E-E359DC7C8FB6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{435DC6C4-1061-405F-B791-1EDA2D5934B0}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7FAACD9-EA5B-424D-839E-E359DC7C8FB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7FAACD9-EA5B-424D-839E-E359DC7C8FB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7FAACD9-EA5B-424D-839E-E359DC7C8FB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7FAACD9-EA5B-424D-839E-E359DC7C8FB6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
