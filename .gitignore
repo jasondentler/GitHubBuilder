@@ -3,6 +3,7 @@ obj
 bin
 *.csproj.user
 *.suo
+packages
 
 # Resharper
 *ReSharper*
@@ -17,11 +18,3 @@ bin
 *.swp
 *.user
 *.DS_Store
-
-# Ncqrs in non framework solution
-/Extensions/lib/Ncqrs/*
-/Samples/MyNotes/lib/*
-/lib/Debug
-/lib/Release
-release
-*.pidb
