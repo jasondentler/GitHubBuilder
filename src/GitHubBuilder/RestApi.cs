@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 
-namespace GitHubBuilder.Operations
+namespace GitHubBuilder
 {
     public class RestApi
     {

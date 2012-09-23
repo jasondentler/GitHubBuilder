@@ -6,7 +6,7 @@ using System.Net;
 using GitHubBuilder.Model;
 using RestSharp;
 
-namespace GitHubBuilder.Operations
+namespace GitHubBuilder.AuthToken
 {
     public class Authentication
     {

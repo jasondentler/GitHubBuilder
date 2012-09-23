@@ -1,4 +1,5 @@
 ﻿using GitHubBuilder.AuthToken;
+using GitHubBuilder.Model;
 using Topshelf;
 
 namespace GitHubBuilder
@@ -9,6 +10,9 @@ namespace GitHubBuilder
         public bool Start(HostControl hostControl)
         {
             var token = new TokenSource().GetToken();
+
+            var requests = PullRequest.List();
+
             return !string.IsNullOrWhiteSpace(token);
         }
 

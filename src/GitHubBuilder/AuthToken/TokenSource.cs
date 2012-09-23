@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using GitHubBuilder.Operations;
 
 namespace GitHubBuilder.AuthToken
 {
