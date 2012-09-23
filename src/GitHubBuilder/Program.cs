@@ -18,6 +18,7 @@ namespace GitHubBuilder
                                     x.SetDescription("Builds & tests GitHub pull requests");
                                     x.SetDisplayName("GitHub Builder");
                                     x.SetServiceName("GitHubBuilder");
+                                    x.DependsOnEventLog();
                                 });
         }
     }

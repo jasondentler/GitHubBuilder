@@ -1,4 +1,5 @@
-﻿using Topshelf;
+﻿using GitHubBuilder.AuthToken;
+using Topshelf;
 
 namespace GitHubBuilder
 {
@@ -7,12 +8,14 @@ namespace GitHubBuilder
 
         public bool Start(HostControl hostControl)
         {
-            throw new System.NotImplementedException();
+            var token = new TokenSource().GetToken();
+            return !string.IsNullOrWhiteSpace(token);
         }
 
         public bool Stop(HostControl hostControl)
         {
-            throw new System.NotImplementedException();
+            return true;
         }
+
     }
 }
